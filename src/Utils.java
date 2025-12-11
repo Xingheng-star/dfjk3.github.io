@@ -102,7 +102,7 @@ public class Utils {
      */
     public static int findMax(int[] arr) {
         if (arr == null || arr.length == 0) {
-            throw new IllegalArgumentException("数组不能为空");
+            throw new IllegalArgumentException("数组不能为空 / Array cannot be empty");
         }
         int max = arr[0];
         for (int i = 1; i < arr.length; i++) {
@@ -122,7 +122,7 @@ public class Utils {
      */
     public static int findMin(int[] arr) {
         if (arr == null || arr.length == 0) {
-            throw new IllegalArgumentException("数组不能为空");
+            throw new IllegalArgumentException("数组不能为空 / Array cannot be empty");
         }
         int min = arr[0];
         for (int i = 1; i < arr.length; i++) {
@@ -197,7 +197,7 @@ public class Utils {
      */
     public static long factorial(int n) {
         if (n < 0) {
-            throw new IllegalArgumentException("n必须是非负整数");
+            throw new IllegalArgumentException("n必须是非负整数 / n must be a non-negative integer");
         }
         if (n == 0 || n == 1) {
             return 1;
@@ -281,20 +281,21 @@ public class Utils {
         if (n == 0) {
             return 1;
         }
-        if (n < 0) {
-            // 使用迭代方式避免栈溢出
+        // 处理负指数和Integer.MIN_VALUE溢出问题
+        boolean isNegative = n < 0;
+        long exp = Math.abs((long) n);  // 使用long避免Integer.MIN_VALUE溢出
+        if (isNegative) {
             x = 1 / x;
-            n = -n;
         }
         // 使用快速幂算法 (O(log n))
         double result = 1;
         double base = x;
-        while (n > 0) {
-            if (n % 2 == 1) {
+        while (exp > 0) {
+            if (exp % 2 == 1) {
                 result *= base;
             }
             base *= base;
-            n /= 2;
+            exp /= 2;
         }
         return result;
     }
