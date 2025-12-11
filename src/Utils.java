@@ -17,7 +17,7 @@ public class Utils {
      * @return 如果为空或null返回true，否则返回false
      */
     public static boolean isEmpty(String str) {
-        return str == null || str.trim().isEmpty();
+        return str == null || str.isEmpty() || str.trim().isEmpty();
     }
     
     /**
