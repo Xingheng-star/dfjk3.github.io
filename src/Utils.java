@@ -265,7 +265,8 @@ public class Utils {
         if (a == 0 || b == 0) {
             return 0;
         }
-        return Math.abs(a * b) / gcd(a, b);
+        // 避免整数溢出：先除后乘
+        return Math.abs(a) / gcd(a, b) * Math.abs(b);
     }
     
     /**
@@ -281,11 +282,19 @@ public class Utils {
             return 1;
         }
         if (n < 0) {
-            return 1 / power(x, -n);
+            // 使用迭代方式避免栈溢出
+            x = 1 / x;
+            n = -n;
         }
+        // 使用快速幂算法 (O(log n))
         double result = 1;
-        for (int i = 0; i < n; i++) {
-            result *= x;
+        double base = x;
+        while (n > 0) {
+            if (n % 2 == 1) {
+                result *= base;
+            }
+            base *= base;
+            n /= 2;
         }
         return result;
     }
