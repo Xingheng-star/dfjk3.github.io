@@ -18,10 +18,10 @@ public class ArrayTest {
 class MyTools {
 
     public void bubble(int[] arr) {
-        //冒泡排序
+        //冒泡排序 - 优化版本，避免重复比较
         int temp = 0;
         for(int i = 0; i < arr.length-1; i++) {
-            for (int j = 0; j < arr.length-1; j++) {
+            for (int j = 0; j < arr.length-1-i; j++) {  // 修正：减去i避免重复比较已排序的元素
                 if(arr[j] > arr[j + 1]){ //交换
                     temp = arr[j];
                     arr[j] = arr[j + 1];
