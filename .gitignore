@@ -1,0 +1,22 @@
+# Java compiled files
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Build directories
+out/
+build/
+target/
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
